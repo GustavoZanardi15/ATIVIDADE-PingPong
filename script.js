@@ -6,8 +6,8 @@ let vyBolinha = 5;
 let raio = diametro / 2;
 let xRaquete = 10;
 let yRaquete = 150;
-let comprimentoRaquete = 10;
-let larguraRaquete = 100;
+let compRaquete = 10;
+let largRaquete = 100;
 let meusPontos = 0;  
 let pontosDoOponente = 0;  
 
@@ -21,6 +21,7 @@ function draw() {
     CriarBolinha();
     VerificarColisaoBorda();
     MoverRaquete();
+    MoverRaqueteOponente();
     VerificarColisaoRaquete();
     incluiPlacar();
 }
@@ -33,11 +34,11 @@ function CriarBolinha() {
 
 function VerificarColisaoBorda() {
     if (xBolinha + raio > width) {
-        pontosDoOponente++;
+        meusPontos++;
         resetBolinha();
     }
     if (xBolinha - raio < 0) {
-        meusPontos++;
+        pontosDoOponente++;
         resetBolinha();
     }
     if (yBolinha + raio > height || yBolinha - raio < 0) {
@@ -46,20 +47,31 @@ function VerificarColisaoBorda() {
 }
 
 function MoverRaquete() {
-    rect(xRaquete, yRaquete, comprimentoRaquete, larguraRaquete);
+    rect(xRaquete, yRaquete, compRaquete, largRaquete);
 
     if (keyIsDown(UP_ARROW) && yRaquete > 0) {
         yRaquete -= 10; 
     }
-    if (keyIsDown(DOWN_ARROW) && yRaquete < height - larguraRaquete) {
+    if (keyIsDown(DOWN_ARROW) && yRaquete < height - largRaquete) {
+        yRaquete += 10; 
+    }
+}
+
+function MoverRaqueteOponente() {
+    rect(xRaquete, yRaquete, compRaquete, largRaquete);
+
+    if (keyIsDown(UP_ARROW) && yRaquete > 0) {
+        yRaquete -= 10; 
+    }
+    if (keyIsDown(DOWN_ARROW) && yRaquete < height - largRaquete) {
         yRaquete += 10; 
     }
 }
 
 function VerificarColisaoRaquete() {
-    if (xBolinha - raio < xRaquete + comprimentoRaquete && 
+    if (xBolinha - raio < xRaquete + compRaquete && 
         yBolinha > yRaquete && 
-        yBolinha < yRaquete + larguraRaquete) {
+        yBolinha < yRaquete + largRaquete) {
         vxBolinha *= -1; 
     }
 }
