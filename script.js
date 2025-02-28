@@ -27,8 +27,9 @@ function draw() {
     MoverRaquete();
     MoverRaqueteOponente();
     VerificarColisaoRaquete();
-    incluiPlacar();
     VerificarColisaoRaqueteOponente();
+    incluiPlacar();
+   
 }
 
 function CriarBolinha() {
@@ -53,11 +54,11 @@ function VerificarColisaoBorda() {
 
 function MoverRaquete() {
     rect(xRaquete, yRaquete, compRaquete, largRaquete);
-
-    if (keyIsDown(UP_ARROW) && yRaquete > 0) {
+    
+    if (keyIsDown(87) && yRaquete > 0) {
         yRaquete -= 10; 
     }
-    if (keyIsDown(DOWN_ARROW) && yRaquete < height - largRaquete) {
+    if (keyIsDown(83) && yRaquete < height - largRaquete) {
         yRaquete += 10; 
     }
 }
@@ -65,10 +66,10 @@ function MoverRaquete() {
 function MoverRaqueteOponente() {
     rect(xRaqueteOponente, yRaqueteOponente, compRaqueteOponente, largRaqueteOponente);
 
-    if (keyIsDown(87) && yRaqueteOponente > 0) {
+    if (keyIsDown(UP_ARROW) && yRaqueteOponente > 0) {
         yRaqueteOponente -= 10; 
     }
-    if (keyIsDown(83) && yRaqueteOponente < height - largRaqueteOponente) {
+    if (keyIsDown(DOWN_ARROW) && yRaqueteOponente < height - largRaqueteOponente) {
         yRaqueteOponente += 10; 
     }
 }
@@ -82,7 +83,7 @@ function VerificarColisaoRaquete() {
 }
 
 function VerificarColisaoRaqueteOponente() {
-    if (xBolinha + raio > xRaqueteOponente + compRaqueteOponente && 
+    if (xBolinha + raio > xRaqueteOponente && 
         yBolinha > yRaqueteOponente && 
         yBolinha < yRaqueteOponente + largRaqueteOponente) {
         vxBolinha *= -1; 
@@ -100,5 +101,5 @@ function resetBolinha() {
     xBolinha = width / 2;
     yBolinha = height / 2;
     vxBolinha = -vxBolinha; 
-    vyBolinha = 5;
+
 }
