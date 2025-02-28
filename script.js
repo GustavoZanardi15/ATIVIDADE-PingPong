@@ -82,9 +82,9 @@ function VerificarColisaoRaquete() {
 }
 
 function VerificarColisaoRaqueteOponente() {
-    if (xBolinha - raio < xRaquete + compRaquete && 
-        yBolinha > yRaquete && 
-        yBolinha < yRaquete + largRaquete) {
+    if (xBolinha + raio > xRaqueteOponente + compRaqueteOponente && 
+        yBolinha > yRaqueteOponente && 
+        yBolinha < yRaqueteOponente + largRaqueteOponente) {
         vxBolinha *= -1; 
     }
 }
