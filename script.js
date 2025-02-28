@@ -8,6 +8,10 @@ let xRaquete = 10;
 let yRaquete = 150;
 let compRaquete = 10;
 let largRaquete = 100;
+let xRaqueteOponente = 580;
+let yRaqueteOponente = 150;
+let compRaqueteOponente= 10;
+let largRaqueteOponente = 100;
 let meusPontos = 0;  
 let pontosDoOponente = 0;  
 
@@ -24,6 +28,7 @@ function draw() {
     MoverRaqueteOponente();
     VerificarColisaoRaquete();
     incluiPlacar();
+    VerificarColisaoRaqueteOponente();
 }
 
 function CriarBolinha() {
@@ -58,17 +63,25 @@ function MoverRaquete() {
 }
 
 function MoverRaqueteOponente() {
-    rect(xRaquete, yRaquete, compRaquete, largRaquete);
+    rect(xRaqueteOponente, yRaqueteOponente, compRaqueteOponente, largRaqueteOponente);
 
-    if (keyIsDown(UP_ARROW) && yRaquete > 0) {
-        yRaquete -= 10; 
+    if (keyIsDown(87) && yRaqueteOponente > 0) {
+        yRaqueteOponente -= 10; 
     }
-    if (keyIsDown(DOWN_ARROW) && yRaquete < height - largRaquete) {
-        yRaquete += 10; 
+    if (keyIsDown(83) && yRaqueteOponente < height - largRaqueteOponente) {
+        yRaqueteOponente += 10; 
     }
 }
 
 function VerificarColisaoRaquete() {
+    if (xBolinha - raio < xRaquete + compRaquete && 
+        yBolinha > yRaquete && 
+        yBolinha < yRaquete + largRaquete) {
+        vxBolinha *= -1; 
+    }
+}
+
+function VerificarColisaoRaqueteOponente() {
     if (xBolinha - raio < xRaquete + compRaquete && 
         yBolinha > yRaquete && 
         yBolinha < yRaquete + largRaquete) {
